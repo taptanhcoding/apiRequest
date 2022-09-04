@@ -1,6 +1,17 @@
-
+const Video = require('../models/Video')
 class HandleData {
-    // [Get] /videoData/:detail
+    // [GET] /video/add
+    add(req,res,next) {
+
+    }
+
+    // [GET] /video/list 
+    list(req,res,next) {
+        
+    }
+
+
+    // [Get] /video/:detail
     get(req,res,next) {
 
     }

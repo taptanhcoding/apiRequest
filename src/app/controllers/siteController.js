@@ -5,7 +5,7 @@ class HandleData {
 
     }
 
-    // [GET] /videoData
+    // [GET] /
     index(req,res,next) {
         res.render('home')
     }

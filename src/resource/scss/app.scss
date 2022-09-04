@@ -1,3 +1,42 @@
 body {
-    color: red;
+}
+
+.admin-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.navbar-collapse {
+    flex-grow: unset;
+}
+
+.dropdown-menu{
+    left: unset;
+    right: 0;
+}
+
+//Css form input
+.form-group label {
+    user-select: none;
+    pointer-events: none;
+    color: #999;
+    top :6px;
+    left: 14px;
+    z-index: 5;
+    transition: all 0.5s linear;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-control:not(:placeholder-shown) + label,
+.form-control:focus + label {
+    padding: 0 3px;
+    top: -14px;
+    left: 38px;
+    color: #80bdff;
+    background-color: #fff;
 }

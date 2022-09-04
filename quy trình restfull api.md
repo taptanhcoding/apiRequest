@@ -93,6 +93,8 @@ cấu hình lại package.json => "start": "nodemon --inspect ./src/index.js loc
 # Static file & SCSS : cấu hình và sử dụng những file tĩnh(css, img) cấu hình sử dụng scss
 
 - tạo link cho file tĩnh: app.use(express.static(path.join(__dirname,'public/'))) //=>(ảnh nằm trong src(chứa file index.js)/public/img/ảnh.gì đó) => khi chạy link http://localhost:3000/img/icon.png thì nó hiểu http://localhost:3000/ là đẫ truy vào src/public/ rồi
+
+thêm css vào main.hbs => link từ public: /css/file.css
 - cài đặt sass : npm i node-sass -D
   - trong public tạo folder css
   - cấu hình thêm "script" trong package.json
@@ -232,7 +234,7 @@ db.connect()
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-<!-- const ObjectId = Schema.ObjectId; --> => cái này để đẻ ra id tự động
+<!-- const ObjectId = Schema.ObjectId; --> => cái này để đẻ ra id tự động=> nói chung là éo cần
 
 const Course = new Schema({
   name: { type: String, maxLenght: 255 },
@@ -316,3 +318,36 @@ const Video = new Schema({
 });
 
 Video.plugin(AutoIncrement);
+
+# 4 chọc vào db : 
+# dùng model chọc vào db :
+ trong siteController.js
+    1. import Course vào : const Course = require('../models/Course') => cái này chính là chọc vào form
+    2. giả sử tại home muốn nó tương tác db(lấy dữ liệu về) :  
+    index(req, res) {
+        Course.find({}, function (err, courses) { ///=> find({} => lấy tất,callback => hàm xử lý dwux liệu trả về)
+            if(!err) {
+                res.json(courses)
+            }
+            else {
+                res.status(400).json({error: 'Error'})
+            }
+          });
+        // res.render('home');
+    }
+npm start thì trang chủ sẽ trả về dữ liệu như api
+
+# + POST method : Xử lý dữ liệu truyền qua form qua phương thức khác get
+
+
+app.use(express.urlencoded({
+extended: true
+})) 
+=> xử lý middleware khi gửi bằng form
+app.use(express.json()) => xử lý middleware khi gửi bằng axios,fetch
+=> đây là thư viện body-parser => một thư viện được tích hợp tư express 4.16 trỏ lên
+với bản thấp hơn lên mạng tìm body parser npm rồi tự cài
+
+# kết nối Cotroller và models
+trong controller: 
+ import Course vào : const Course = require('../models/Course')

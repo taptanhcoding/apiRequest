@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema2 = mongoose.Schema;
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const slug = require('mongoose-slug-generator')
 mongoose.plugin(slug)
 
-const Video = new Schema({
+const Video = new Schema2({
     _id: {type:Number},
     channelId:{type:Number},
     name: { type: String,required:true},
@@ -14,10 +14,12 @@ const Video = new Schema({
     like:{type:Number},
     dislike:{type:Number},
     videoId : {type: String,required:true},
-    image : {type: String,slug:'videoId'}
+    image : {type: String}
 },{
     _id:false,
     timestamps:true
 });
 
 Video.plugin(AutoIncrement);
+
+module.exports = mongoose.model('Video', Video);

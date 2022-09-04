@@ -1,10 +1,12 @@
-const videoData = require('./channels')
+const handleChannel = require('./channels')
+const handleVideo = require('./videos')
 const siteData = require('./site')
 
 
 
 function route(app) {
-    app.use('/videodata', videoData)
+    app.use('/channel', handleChannel)
+    app.use('/video', handleVideo)
     app.use('/',siteData)
 }
 
